@@ -1,0 +1,17 @@
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/bin/Debug/net8.0/LearnLead.Infrastructure.deps.json
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/bin/Debug/net8.0/LearnLead.Infrastructure.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/bin/Debug/net8.0/LearnLead.Infrastructure.pdb
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/bin/Debug/net8.0/LearnLead.Application.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/bin/Debug/net8.0/LearnLead.Domain.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/bin/Debug/net8.0/LearnLead.Domain.pdb
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/bin/Debug/net8.0/LearnLead.Application.pdb
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.csproj.AssemblyReference.cache
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.AssemblyInfoInputs.cache
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.AssemblyInfo.cs
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.csproj.CoreCompileInputs.cache
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLea.AA4CCD46.Up2Date
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/refint/LearnLead.Infrastructure.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.pdb
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/ref/LearnLead.Infrastructure.dll

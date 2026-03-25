@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "5cCyVhf1XNEnQ3Jnn9BMF6MZdHqzjtD8dLPUXbeljK8=",
+  "Source": "LearnLead.API",
+  "BasePath": "_content/LearnLead.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "LearnLead.API/wwwroot",
+      "Source": "LearnLead.API",
+      "ContentRoot": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/",
+      "BasePath": "_content/LearnLead.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/4726810950244cd182960f71d9ceaeed.mp4",
+      "SourceId": "LearnLead.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/",
+      "BasePath": "_content/LearnLead.API",
+      "RelativePath": "uploads/videos/4726810950244cd182960f71d9ceaeed.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/videos/4726810950244cd182960f71d9ceaeed.mp4"
+    },
+    {
+      "Identity": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/a06bcda68d564bcfa15a443e691321f9.mp4",
+      "SourceId": "LearnLead.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/",
+      "BasePath": "_content/LearnLead.API",
+      "RelativePath": "uploads/videos/a06bcda68d564bcfa15a443e691321f9.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/videos/a06bcda68d564bcfa15a443e691321f9.mp4"
+    },
+    {
+      "Identity": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/b0edb2b2bc9149189641af7329d40458.mp4",
+      "SourceId": "LearnLead.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/",
+      "BasePath": "_content/LearnLead.API",
+      "RelativePath": "uploads/videos/b0edb2b2bc9149189641af7329d40458.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/videos/b0edb2b2bc9149189641af7329d40458.mp4"
+    }
+  ]
+}

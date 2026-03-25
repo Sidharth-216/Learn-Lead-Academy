@@ -1,0 +1,15 @@
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/bin/Debug/net8.0/LearnLead.Application.deps.json
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/bin/Debug/net8.0/LearnLead.Application.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/bin/Debug/net8.0/LearnLead.Application.pdb
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/bin/Debug/net8.0/LearnLead.Domain.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/bin/Debug/net8.0/LearnLead.Domain.pdb
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLead.Application.csproj.AssemblyReference.cache
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLead.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLead.Application.AssemblyInfoInputs.cache
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLead.Application.AssemblyInfo.cs
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLead.Application.csproj.CoreCompileInputs.cache
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLea.4C5768BF.Up2Date
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLead.Application.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/refint/LearnLead.Application.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLead.Application.pdb
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/ref/LearnLead.Application.dll
