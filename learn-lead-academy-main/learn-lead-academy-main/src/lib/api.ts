@@ -181,6 +181,25 @@ export interface Lesson {
   createdAt: string;
 }
 
+export type LessonResourceType = "notes" | "practice" | "starter";
+
+export interface LessonResource {
+  id: string;
+  title: string;
+  resourceType: LessonResourceType;
+  url: string;
+  isExternalLink: boolean;
+  courseId: string;
+  courseName: string;
+  lessonId: string;
+  lessonTitle: string;
+  lessonOrder: number;
+  lessonIsFree: boolean;
+  formattedSize: string;
+  mimeType: string;
+  uploadedAt: string;
+}
+
 // Add this to coursesApi object
 // getLessons: (courseId: string) => request<Lesson[]>(`/courses/${courseId}/lessons`),
 
@@ -236,6 +255,7 @@ export const coursesApi = {
   getById:      (id: string)       => request<Course>(`/courses/${id}`),
   getCategories: ()                => request<string[]>("/courses/categories"),
   getLessons:   (courseId: string) => request<Lesson[]>(`/courses/${courseId}/lessons`),
+  getResources: (courseId: string) => request<LessonResource[]>(`/courses/${courseId}/resources`),
 };
 // ── User API ──────────────────────────────────────────────────────────────────
 export const userApi = {
@@ -322,6 +342,44 @@ export const adminApi = {
 
   deleteVideo: (id: string) =>
     request<void>(`/admin/videos/${id}`, { method: "DELETE" }),
+
+  getResources: (params?: { page?: number; pageSize?: number; courseId?: string }) => {
+    const qs = new URLSearchParams();
+    if (params?.page)     qs.set("page",     String(params.page));
+    if (params?.pageSize) qs.set("pageSize", String(params.pageSize));
+    if (params?.courseId) qs.set("courseId", params.courseId);
+    return request<PagedResult<LessonResource>>(`/admin/resources?${qs}`);
+  },
+
+  uploadResource: (body: {
+    file: File;
+    title: string;
+    resourceType: LessonResourceType;
+    courseId: string;
+    lessonId: string;
+  }) => {
+    const form = new FormData();
+    form.append("file", body.file);
+    form.append("title", body.title);
+    form.append("resourceType", body.resourceType);
+    form.append("courseId", body.courseId);
+    form.append("lessonId", body.lessonId);
+    return request<LessonResource>("/admin/resources/upload", { method: "POST", body: form });
+  },
+
+  uploadResourceLink: (body: {
+    title: string;
+    resourceType: LessonResourceType;
+    courseId: string;
+    lessonId: string;
+    externalUrl: string;
+  }) => request<LessonResource>("/admin/resources/link", {
+    method: "POST",
+    body: JSON.stringify(body),
+  }),
+
+  deleteResource: (id: string) =>
+    request<void>(`/admin/resources/${id}`, { method: "DELETE" }),
 
   getSettings: () => request<AcademySettings>("/admin/settings"),
 

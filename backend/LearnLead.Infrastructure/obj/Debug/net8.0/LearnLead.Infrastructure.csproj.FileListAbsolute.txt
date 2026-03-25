@@ -15,3 +15,4 @@
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/refint/LearnLead.Infrastructure.dll
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.pdb
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/ref/LearnLead.Infrastructure.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.sourcelink.json

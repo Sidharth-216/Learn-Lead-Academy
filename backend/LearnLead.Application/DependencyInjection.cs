@@ -50,6 +50,7 @@ public static class DependencyInjection
         services.AddScoped<IDashboardService, DashboardService>();
         services.AddScoped<ISettingsService,  SettingsService>();
         services.AddScoped<ILessonService,    LessonService>();  // NEW
+        services.AddScoped<ILessonResourceService, LessonResourceService>();
 
         return services;
     }

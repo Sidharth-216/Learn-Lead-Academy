@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   ArrowLeft, Clock, Users, BookOpen, Star,
-  Play, Download, Loader2, CheckCircle, Lock, Video
+  Play, Download, Loader2, CheckCircle, Lock, Video, ExternalLink
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { coursesApi, userApi, authApi, type Course, type Lesson } from "@/lib/api";
+import { coursesApi, userApi, authApi, type Course, type Lesson, type LessonResource } from "@/lib/api";
 import { toast } from "sonner";
 
 const getYoutubeEmbedUrl = (url?: string) => {
@@ -44,6 +44,7 @@ const CourseDetail = () => {
   const [loading,   setLoading]   = useState(true);
   const [enrolling, setEnrolling] = useState(false);
   const [enrolled,  setEnrolled]  = useState(false);
+  const [resources, setResources] = useState<LessonResource[]>([]);
   const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
   const [error,     setError]     = useState("");
 
@@ -55,10 +56,12 @@ const CourseDetail = () => {
     Promise.all([
       coursesApi.getById(id),
       coursesApi.getLessons(id).catch(() => [] as Lesson[]), // lessons may be empty — don't fail
+      coursesApi.getResources(id).catch(() => [] as LessonResource[]),
     ])
-      .then(([courseData, lessonData]) => {
+      .then(([courseData, lessonData, resourceData]) => {
         setCourse(courseData);
         setLessons(lessonData);
+        setResources(resourceData);
       })
       .catch((err) => setError(err.message ?? "Course not found."))
       .finally(() => setLoading(false));
@@ -123,6 +126,11 @@ const CourseDetail = () => {
   const activeLesson = lessons.find((lesson) => lesson.id === activeLessonId) ?? null;
   const canPlayActive = !!activeLesson && (activeLesson.isFree || enrolled) && !!activeLesson.videoUrl;
   const youtubeEmbedUrl = getYoutubeEmbedUrl(activeLesson?.videoUrl);
+  const resourceTypeLabel = (type: LessonResource["resourceType"]) => {
+    if (type === "notes") return "Notes";
+    if (type === "practice") return "Practice Questions";
+    return "Project Starter Files";
+  };
 
   return (
     <div className="min-h-screen">
@@ -275,19 +283,87 @@ const CourseDetail = () => {
               <h2 className="font-display font-bold text-2xl text-foreground mt-12 mb-6">
                 Resources
               </h2>
-              <div className="flex flex-col gap-3">
-                {["Course Notes (PDF)", "Practice Exercises", "Project Starter Files"].map((r) => (
-                  <div
-                    key={r}
-                    className="flex items-center justify-between p-4 rounded-xl bg-card border border-border"
-                  >
-                    <span className="text-sm text-foreground">{r}</span>
-                    <Button variant="ghost" size="sm">
-                      <Download className="w-4 h-4" />
-                    </Button>
-                  </div>
-                ))}
-              </div>
+              {lessons.length === 0 ? (
+                <div className="text-center py-10 bg-card rounded-xl border border-border text-sm text-muted-foreground">
+                  Resources will appear here once lessons are added.
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {lessons.map((lesson) => {
+                    const lessonResources = resources.filter((resource) => resource.lessonId === lesson.id);
+                    const grouped = {
+                      notes: lessonResources.filter((resource) => resource.resourceType === "notes"),
+                      practice: lessonResources.filter((resource) => resource.resourceType === "practice"),
+                      starter: lessonResources.filter((resource) => resource.resourceType === "starter"),
+                    };
+                    const canAccessLessonResources = lesson.isFree || enrolled;
+
+                    return (
+                      <div key={lesson.id} className="rounded-xl bg-card border border-border p-4">
+                        <div className="flex items-center justify-between mb-4">
+                          <p className="font-medium text-foreground text-sm">
+                            Lesson {lesson.order}: {lesson.title}
+                          </p>
+                          {lesson.isFree ? (
+                            <span className="text-xs font-medium text-accent bg-accent/10 px-2 py-1 rounded-full">
+                              Free
+                            </span>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">
+                              {enrolled ? "Enrolled access" : "Locked until enrolled"}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="space-y-3">
+                          {(["notes", "practice", "starter"] as const).map((type) => {
+                            const items = grouped[type];
+                            return (
+                              <div key={type}>
+                                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                                  {resourceTypeLabel(type)}
+                                </p>
+                                {items.length === 0 ? (
+                                  <div className="text-xs text-muted-foreground border border-dashed border-border rounded-lg p-3">
+                                    No {resourceTypeLabel(type).toLowerCase()} added yet.
+                                  </div>
+                                ) : (
+                                  <div className="space-y-2">
+                                    {items.map((resource) => (
+                                      <div
+                                        key={resource.id}
+                                        className="flex items-center justify-between rounded-lg border border-border p-3"
+                                      >
+                                        <div className="min-w-0">
+                                          <p className="text-sm text-foreground truncate">{resource.title}</p>
+                                          <p className="text-xs text-muted-foreground">{resource.formattedSize}</p>
+                                        </div>
+                                        {canAccessLessonResources ? (
+                                          <a href={resource.url} target="_blank" rel="noreferrer">
+                                            <Button variant="ghost" size="sm">
+                                              {resource.isExternalLink
+                                                ? <ExternalLink className="w-4 h-4" />
+                                                : <Download className="w-4 h-4" />}
+                                            </Button>
+                                          </a>
+                                        ) : (
+                                          <Button variant="ghost" size="sm" disabled>
+                                            <Lock className="w-4 h-4" />
+                                          </Button>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
             {/* Right – Enroll card */}

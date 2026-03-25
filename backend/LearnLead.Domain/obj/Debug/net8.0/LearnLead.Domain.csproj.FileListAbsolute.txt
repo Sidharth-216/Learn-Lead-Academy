@@ -10,3 +10,4 @@
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/obj/Debug/net8.0/refint/LearnLead.Domain.dll
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/obj/Debug/net8.0/LearnLead.Domain.pdb
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/obj/Debug/net8.0/ref/LearnLead.Domain.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/obj/Debug/net8.0/LearnLead.Domain.sourcelink.json

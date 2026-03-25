@@ -65,6 +65,7 @@ public static class DependencyInjection
         services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
         services.AddScoped<ISettingsRepository,   SettingsRepository>();
         services.AddScoped<ILessonRepository,     LessonRepository>();  // NEW
+        services.AddScoped<ILessonResourceRepository, LessonResourceRepository>();
 
         // Security
         services.AddScoped<ITokenService, JwtTokenService>();

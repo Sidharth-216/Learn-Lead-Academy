@@ -14,6 +14,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
 import AdminCourses   from "./pages/admin/AdminCourses.tsx";
 import AdminUsers     from "./pages/admin/AdminUsers.tsx";
 import AdminVideos    from "./pages/admin/AdminVideos.tsx";
+import AdminResources from "./pages/admin/AdminResources.tsx";
 import AdminSettings  from "./pages/admin/AdminSettings.tsx";
 import AdminLogin     from "./pages/admin/AdminLogin.tsx";
 import AdminLessons   from "./pages/admin/AdminLessons.tsx";
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="courses/:courseId/lessons"   element={<AdminLessons />} />
             <Route path="users"                       element={<AdminUsers />} />
             <Route path="videos"                      element={<AdminVideos />} />
+            <Route path="resources"                   element={<AdminResources />} />
             <Route path="settings"                    element={<AdminSettings />} />
           </Route>
 

@@ -13,3 +13,4 @@
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/refint/LearnLead.Application.dll
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLead.Application.pdb
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/ref/LearnLead.Application.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/Debug/net8.0/LearnLead.Application.sourcelink.json

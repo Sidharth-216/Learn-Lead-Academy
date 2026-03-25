@@ -52,6 +52,7 @@ public class CoursesController : ControllerBase
 
 using LearnLead.Application.DTOs.Courses;
 using LearnLead.Application.DTOs.Lessons;
+using LearnLead.Application.DTOs.Resources;
 using LearnLead.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -64,11 +65,16 @@ public class CoursesController : ControllerBase
 {
     private readonly ICourseService _courseService;
     private readonly ILessonService _lessonService;
+    private readonly ILessonResourceService _resourceService;
 
-    public CoursesController(ICourseService courseService, ILessonService lessonService)
+    public CoursesController(
+        ICourseService courseService,
+        ILessonService lessonService,
+        ILessonResourceService resourceService)
     {
         _courseService = courseService;
         _lessonService = lessonService;
+        _resourceService = resourceService;
     }
 
     /// <summary>Get all published courses with optional pagination, category filter, and search.</summary>
@@ -111,5 +117,15 @@ public class CoursesController : ControllerBase
     {
         var lessons = await _lessonService.GetByCourseIdAsync(courseId);
         return Ok(lessons);
+    }
+
+    /// <summary>Get all lesson resources for a course (notes/practice/starter files).</summary>
+    [HttpGet("{courseId}/resources")]
+    [ProducesResponseType(typeof(IEnumerable<LessonResourceDto>), 200)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> GetResources(string courseId)
+    {
+        var resources = await _resourceService.GetByCourseIdAsync(courseId);
+        return Ok(resources);
     }
 }

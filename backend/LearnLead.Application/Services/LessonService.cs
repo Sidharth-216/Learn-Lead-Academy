@@ -13,15 +13,18 @@ public class LessonService : ILessonService
     private readonly ILessonRepository _lessonRepo;
     private readonly ICourseRepository _courseRepo;
     private readonly IVideoRepository  _videoRepo;
+    private readonly ILessonResourceRepository _resourceRepo;
 
     public LessonService(
         ILessonRepository lessonRepo,
         ICourseRepository courseRepo,
-        IVideoRepository videoRepo)
+        IVideoRepository videoRepo,
+        ILessonResourceRepository resourceRepo)
     {
         _lessonRepo = lessonRepo;
         _courseRepo = courseRepo;
         _videoRepo  = videoRepo;
+        _resourceRepo = resourceRepo;
     }
 
     public async Task<IEnumerable<LessonDto>> GetByCourseIdAsync(string courseId)
@@ -105,6 +108,7 @@ public class LessonService : ILessonService
     {
         _ = await _lessonRepo.GetByIdAsync(id)
             ?? throw new NotFoundException("Lesson", id);
+        await _resourceRepo.DeleteByLessonIdAsync(id);
         await _lessonRepo.DeleteAsync(id);
     }
 

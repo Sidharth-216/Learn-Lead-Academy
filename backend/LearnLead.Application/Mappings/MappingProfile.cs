@@ -1,6 +1,7 @@
 using AutoMapper;
 using LearnLead.Application.DTOs.Courses;
 using LearnLead.Application.DTOs.Enrollments;
+using LearnLead.Application.DTOs.Resources;
 using LearnLead.Application.DTOs.Users;
 using LearnLead.Application.DTOs.Videos;
 using LearnLead.Domain.Entities;
@@ -37,6 +38,21 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.UploadedAt,        opt => opt.Ignore())
             .ForMember(dest => dest.UploadedByAdminId, opt => opt.Ignore())
             .ForMember(dest => dest.CourseName,        opt => opt.Ignore());
+
+        // ── Lesson Resource ──────────────────────────────────────────────
+        CreateMap<LessonResource, LessonResourceDto>()
+            .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.StoragePath))
+            .ForMember(dest => dest.FormattedSize,
+                opt => opt.MapFrom(src => src.IsExternalLink ? "External link" : FormatBytes(src.SizeBytes)));
+
+        CreateMap<CreateLessonResourceDto, LessonResource>()
+            .ForMember(dest => dest.Id,               opt => opt.Ignore())
+            .ForMember(dest => dest.CourseName,       opt => opt.Ignore())
+            .ForMember(dest => dest.LessonTitle,      opt => opt.Ignore())
+            .ForMember(dest => dest.LessonOrder,      opt => opt.Ignore())
+            .ForMember(dest => dest.LessonIsFree,     opt => opt.Ignore())
+            .ForMember(dest => dest.UploadedAt,       opt => opt.Ignore())
+            .ForMember(dest => dest.UploadedByAdminId,opt => opt.Ignore());
 
         // ── Enrollment ────────────────────────────────────────────────────
         CreateMap<Enrollment, EnrollmentDto>()
