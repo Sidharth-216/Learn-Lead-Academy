@@ -1,0 +1,428 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Tests/LearnLead.Tests.csproj": {}
+  },
+  "projects": {
+    "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/LearnLead.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/LearnLead.API.csproj",
+        "projectName": "LearnLead.API",
+        "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/LearnLead.API.csproj",
+        "packagesPath": "/home/sidhu/.nuget/packages/",
+        "outputPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/sidhu/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/LearnLead.Application.csproj": {
+                "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/LearnLead.Application.csproj"
+              },
+              "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/LearnLead.Infrastructure.csproj": {
+                "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/LearnLead.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.17, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/sidhu/.dotnet/sdk/8.0.411/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/LearnLead.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/LearnLead.Application.csproj",
+        "projectName": "LearnLead.Application",
+        "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/LearnLead.Application.csproj",
+        "packagesPath": "/home/sidhu/.nuget/packages/",
+        "outputPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/sidhu/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/LearnLead.Domain.csproj": {
+                "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/LearnLead.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.11.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.11.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/sidhu/.dotnet/sdk/8.0.411/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/LearnLead.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/LearnLead.Domain.csproj",
+        "projectName": "LearnLead.Domain",
+        "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/LearnLead.Domain.csproj",
+        "packagesPath": "/home/sidhu/.nuget/packages/",
+        "outputPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/sidhu/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.30.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/sidhu/.dotnet/sdk/8.0.411/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/LearnLead.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/LearnLead.Infrastructure.csproj",
+        "projectName": "LearnLead.Infrastructure",
+        "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/LearnLead.Infrastructure.csproj",
+        "packagesPath": "/home/sidhu/.nuget/packages/",
+        "outputPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/sidhu/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/LearnLead.Application.csproj": {
+                "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/LearnLead.Application.csproj"
+              },
+              "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/LearnLead.Domain.csproj": {
+                "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Domain/LearnLead.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.30.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/sidhu/.dotnet/sdk/8.0.411/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Tests/LearnLead.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Tests/LearnLead.Tests.csproj",
+        "projectName": "LearnLead.Tests",
+        "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Tests/LearnLead.Tests.csproj",
+        "packagesPath": "/home/sidhu/.nuget/packages/",
+        "outputPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/sidhu/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/LearnLead.API.csproj": {
+                "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/LearnLead.API.csproj"
+              },
+              "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/LearnLead.Application.csproj": {
+                "projectPath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Application/LearnLead.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[8.0.17, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/sidhu/.dotnet/sdk/8.0.411/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

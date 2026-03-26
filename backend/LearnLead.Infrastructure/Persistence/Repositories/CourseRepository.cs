@@ -2,6 +2,7 @@ using LearnLead.Domain.Entities;
 using LearnLead.Domain.Interfaces;
 using LearnLead.Infrastructure.Persistence;
 using MongoDB.Driver;
+using System.Text.RegularExpressions;
 
 namespace LearnLead.Infrastructure.Repositories;
 
@@ -37,21 +38,23 @@ public class CourseRepository : ICourseRepository
         string? search       = null,
         bool   publishedOnly = true)
     {
+        var safeCategory = BuildSafeSearchTerm(category);
+        var safeSearch = BuildSafeSearchTerm(search);
         var filters = new List<FilterDefinition<Course>>();
 
         if (publishedOnly)
             filters.Add(Builders<Course>.Filter.Eq(c => c.IsPublished, true));
 
-        if (!string.IsNullOrWhiteSpace(category))
+        if (!string.IsNullOrWhiteSpace(safeCategory))
             filters.Add(Builders<Course>.Filter.Regex(c => c.Category,
-                new MongoDB.Bson.BsonRegularExpression(category, "i")));
+                new MongoDB.Bson.BsonRegularExpression(safeCategory, "i")));
 
-        if (!string.IsNullOrWhiteSpace(search))
+        if (!string.IsNullOrWhiteSpace(safeSearch))
             filters.Add(Builders<Course>.Filter.Or(
                 Builders<Course>.Filter.Regex(c => c.Title,
-                    new MongoDB.Bson.BsonRegularExpression(search, "i")),
+                    new MongoDB.Bson.BsonRegularExpression(safeSearch, "i")),
                 Builders<Course>.Filter.Regex(c => c.Instructor,
-                    new MongoDB.Bson.BsonRegularExpression(search, "i"))));
+                    new MongoDB.Bson.BsonRegularExpression(safeSearch, "i"))));
 
         var filter = filters.Count > 0
             ? Builders<Course>.Filter.And(filters)
@@ -90,5 +93,17 @@ public class CourseRepository : ICourseRepository
     {
         var update = Builders<Course>.Update.Inc(c => c.StudentCount, 1);
         await _col.UpdateOneAsync(c => c.Id == courseId, update);
+    }
+
+    private static string? BuildSafeSearchTerm(string? input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return null;
+
+        var trimmed = input.Trim();
+        if (trimmed.Length > 100)
+            trimmed = trimmed[..100];
+
+        return Regex.Escape(trimmed);
     }
 }

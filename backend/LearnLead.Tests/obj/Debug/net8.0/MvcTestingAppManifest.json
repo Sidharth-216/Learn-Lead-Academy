@@ -1,0 +1,6 @@
+{
+  "LearnLead.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/sidhu\/Desktop\/learn-lead-academy-main\/backend\/LearnLead.API",
+  "LearnLead.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/sidhu\/Desktop\/learn-lead-academy-main\/backend\/LearnLead.Application",
+  "LearnLead.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/sidhu\/Desktop\/learn-lead-academy-main\/backend\/LearnLead.Domain",
+  "LearnLead.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/sidhu\/Desktop\/learn-lead-academy-main\/backend\/LearnLead.Infrastructure"
+}

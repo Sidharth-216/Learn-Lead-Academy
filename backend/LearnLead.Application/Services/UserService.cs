@@ -44,6 +44,7 @@ public class UserService : IUserService
 
     public async Task<PagedResultDto<UserDto>> GetAllAsync(int page, int pageSize, string? search = null)
     {
+        (page, pageSize) = PagingGuard.Normalize(page, pageSize);
         var (users, total) = await _userRepo.GetAllAsync(page, pageSize, search);
 
         var dtos = new List<UserDto>();

@@ -10,9 +10,9 @@
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.AssemblyInfoInputs.cache
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.AssemblyInfo.cs
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.csproj.CoreCompileInputs.cache
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.sourcelink.json
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLea.AA4CCD46.Up2Date
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.dll
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/refint/LearnLead.Infrastructure.dll
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.pdb
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/ref/LearnLead.Infrastructure.dll
-/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/obj/Debug/net8.0/LearnLead.Infrastructure.sourcelink.json

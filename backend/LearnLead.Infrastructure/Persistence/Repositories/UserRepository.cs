@@ -2,6 +2,7 @@ using LearnLead.Domain.Entities;
 using LearnLead.Domain.Interfaces;
 using LearnLead.Infrastructure.Persistence;
 using MongoDB.Driver;
+using System.Text.RegularExpressions;
 
 namespace LearnLead.Infrastructure.Repositories;
 
@@ -38,11 +39,12 @@ public class UserRepository : IUserRepository
     public async Task<(IEnumerable<User> Users, long Total)> GetAllAsync(
         int page, int pageSize, string? search = null)
     {
-        var filter = search is null
+        var safeSearch = BuildSafeSearchTerm(search);
+        var filter = safeSearch is null
             ? Builders<User>.Filter.Empty
             : Builders<User>.Filter.Or(
-                Builders<User>.Filter.Regex(u => u.Name,  new MongoDB.Bson.BsonRegularExpression(search, "i")),
-                Builders<User>.Filter.Regex(u => u.Email, new MongoDB.Bson.BsonRegularExpression(search, "i")));
+                Builders<User>.Filter.Regex(u => u.Name,  new MongoDB.Bson.BsonRegularExpression(safeSearch, "i")),
+                Builders<User>.Filter.Regex(u => u.Email, new MongoDB.Bson.BsonRegularExpression(safeSearch, "i")));
 
         var total = await _col.CountDocumentsAsync(filter);
         var users = await _col.Find(filter)
@@ -65,4 +67,16 @@ public class UserRepository : IUserRepository
 
     public async Task DeleteAsync(string id)
         => await _col.DeleteOneAsync(u => u.Id == id);
+
+    private static string? BuildSafeSearchTerm(string? input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return null;
+
+        var trimmed = input.Trim();
+        if (trimmed.Length > 100)
+            trimmed = trimmed[..100];
+
+        return Regex.Escape(trimmed);
+    }
 }

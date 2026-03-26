@@ -2,6 +2,7 @@ using System.Security.Claims;
 using LearnLead.Application.DTOs.Videos;
 using LearnLead.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearnLead.API.Controllers;
@@ -12,6 +13,20 @@ namespace LearnLead.API.Controllers;
 [Produces("application/json")]
 public class VideosController : ControllerBase
 {
+    private const long MaxVideoUploadBytes = 250L * 1024 * 1024;
+    private static readonly HashSet<string> AllowedVideoExtensions =
+    [
+        ".mp4", ".webm", ".mov", ".m4v"
+    ];
+
+    private static readonly HashSet<string> AllowedVideoMimeTypes =
+    [
+        "video/mp4",
+        "video/webm",
+        "video/quicktime",
+        "video/x-m4v"
+    ];
+
     private readonly IVideoService _videoService;
 
     public VideosController(IVideoService videoService)
@@ -71,6 +86,7 @@ public class VideosController : ControllerBase
     /// </summary>
     [HttpPost("upload")]
     [Consumes("multipart/form-data")]
+    [RequestSizeLimit(MaxVideoUploadBytes)]
     [ProducesResponseType(typeof(VideoDto), 201)]
     [ProducesResponseType(400)]
     public async Task<IActionResult> Upload(
@@ -81,17 +97,24 @@ public class VideosController : ControllerBase
         if (file is null || file.Length == 0)
             return BadRequest(new { error = "Video file is required." });
 
+        if (file.Length > MaxVideoUploadBytes)
+            return BadRequest(new { error = "File is too large. Max allowed size is 250 MB." });
+
         if (string.IsNullOrWhiteSpace(courseId))
             return BadRequest(new { error = "CourseId is required." });
 
-        if (!file.ContentType.StartsWith("video/", StringComparison.OrdinalIgnoreCase))
-            return BadRequest(new { error = "Only video files are allowed." });
+        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+        if (!AllowedVideoExtensions.Contains(ext))
+            return BadRequest(new { error = "Unsupported video file type." });
+
+        var contentType = file.ContentType?.Trim().ToLowerInvariant() ?? "application/octet-stream";
+        if (!AllowedVideoMimeTypes.Contains(contentType))
+            return BadRequest(new { error = "Unsupported MIME type." });
 
         var uploadsRoot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "videos");
         Directory.CreateDirectory(uploadsRoot);
 
         var sanitizedName = Path.GetFileName(file.FileName);
-        var ext = Path.GetExtension(sanitizedName);
         var uniqueName = $"{Guid.NewGuid():N}{ext}";
         var filePath = Path.Combine(uploadsRoot, uniqueName);
 
@@ -101,7 +124,7 @@ public class VideosController : ControllerBase
         }
 
         var publicPath = $"/uploads/videos/{uniqueName}";
-        var absoluteUrl = $"{Request.Scheme}://{Request.Host}{publicPath}";
+        var absoluteUrl = BuildPublicAssetUrl(publicPath);
 
         var dto = new CreateVideoDto
         {
@@ -110,7 +133,7 @@ public class VideosController : ControllerBase
             LessonId = lessonId,
             StoragePath = absoluteUrl,
             SizeBytes = file.Length,
-            MimeType = string.IsNullOrWhiteSpace(file.ContentType) ? "video/mp4" : file.ContentType
+            MimeType = contentType
         };
 
         var adminId = User.FindFirstValue(ClaimTypes.NameIdentifier)
@@ -212,5 +235,11 @@ public class VideosController : ControllerBase
 
         normalized = $"https://www.youtube.com/watch?v={cleanId}";
         return true;
+    }
+
+    private string BuildPublicAssetUrl(string relativePath)
+    {
+        var origin = $"{Request.Scheme}://{Request.Host}";
+        return new Uri(new Uri(origin), relativePath).ToString();
     }
 }

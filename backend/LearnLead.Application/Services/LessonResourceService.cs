@@ -36,6 +36,7 @@ public class LessonResourceService : ILessonResourceService
 
     public async Task<PagedResultDto<LessonResourceDto>> GetAllAsync(int page, int pageSize, string? courseId = null)
     {
+        (page, pageSize) = PagingGuard.Normalize(page, pageSize);
         var (items, total) = await _resourceRepo.GetAllAsync(page, pageSize, courseId);
         return new PagedResultDto<LessonResourceDto>
         {

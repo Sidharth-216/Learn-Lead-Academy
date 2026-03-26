@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using FluentValidation;
 using LearnLead.Application.DTOs.Auth;
 using LearnLead.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -12,9 +13,18 @@ namespace LearnLead.API.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
+    private readonly IValidator<RegisterRequestDto> _registerValidator;
+    private readonly IValidator<LoginRequestDto> _loginValidator;
 
-    public AuthController(IAuthService authService)
-        => _authService = authService;
+    public AuthController(
+        IAuthService authService,
+        IValidator<RegisterRequestDto> registerValidator,
+        IValidator<LoginRequestDto> loginValidator)
+    {
+        _authService = authService;
+        _registerValidator = registerValidator;
+        _loginValidator = loginValidator;
+    }
 
     /// <summary>Register a new student account.</summary>
     [HttpPost("register")]
@@ -22,6 +32,10 @@ public class AuthController : ControllerBase
     [ProducesResponseType(400)]
     public async Task<IActionResult> Register([FromBody] RegisterRequestDto dto)
     {
+        var validation = await _registerValidator.ValidateAsync(dto);
+        if (!validation.IsValid)
+            return BadRequest(new { errors = validation.Errors.Select(x => x.ErrorMessage) });
+
         var result = await _authService.RegisterAsync(dto);
         return Ok(result);
     }
@@ -32,6 +46,10 @@ public class AuthController : ControllerBase
     [ProducesResponseType(401)]
     public async Task<IActionResult> Login([FromBody] LoginRequestDto dto)
     {
+        var validation = await _loginValidator.ValidateAsync(dto);
+        if (!validation.IsValid)
+            return BadRequest(new { errors = validation.Errors.Select(x => x.ErrorMessage) });
+
         var result = await _authService.LoginAsync(dto);
         return Ok(result);
     }
@@ -42,6 +60,10 @@ public class AuthController : ControllerBase
     [ProducesResponseType(401)]
     public async Task<IActionResult> AdminLogin([FromBody] LoginRequestDto dto)
     {
+        var validation = await _loginValidator.ValidateAsync(dto);
+        if (!validation.IsValid)
+            return BadRequest(new { errors = validation.Errors.Select(x => x.ErrorMessage) });
+
         var result = await _authService.AdminLoginAsync(dto);
         return Ok(result);
     }

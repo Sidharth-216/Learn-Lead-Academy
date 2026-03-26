@@ -22,6 +22,7 @@ public class CourseService : ICourseService
     public async Task<PagedResultDto<CourseDto>> GetAllPublishedAsync(
         int page, int pageSize, string? category = null, string? search = null)
     {
+        (page, pageSize) = PagingGuard.Normalize(page, pageSize);
         var (courses, total) = await _courseRepo.GetAllAsync(page, pageSize, category, search, publishedOnly: true);
         return new PagedResultDto<CourseDto>
         {
@@ -35,6 +36,7 @@ public class CourseService : ICourseService
     public async Task<PagedResultDto<CourseDto>> GetAllAdminAsync(
         int page, int pageSize, string? search = null)
     {
+        (page, pageSize) = PagingGuard.Normalize(page, pageSize);
         var (courses, total) = await _courseRepo.GetAllAsync(page, pageSize, null, search, publishedOnly: false);
         return new PagedResultDto<CourseDto>
         {

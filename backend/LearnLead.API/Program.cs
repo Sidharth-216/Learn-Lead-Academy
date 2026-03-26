@@ -1,8 +1,14 @@
 using System.Text;
+using System.IO.Compression;
+using System.Threading.RateLimiting;
 using LearnLead.API.Middleware;
 using LearnLead.Application;
 using LearnLead.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -26,6 +32,13 @@ try
     // ── Layer DI ──────────────────────────────────────────────────────────────
     builder.Services.AddInfrastructure(builder.Configuration);
     builder.Services.AddApplication();
+
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        options.Limits.RequestHeadersTimeout = TimeSpan.FromSeconds(15);
+        options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
+        options.Limits.MaxRequestBodySize = 262_144_000;
+    });
 
     // ── JWT Auth ──────────────────────────────────────────────────────────────
     var jwtSecret = builder.Configuration["Jwt:Secret"]
@@ -74,6 +87,71 @@ try
 
     builder.Services.AddAuthorization();
 
+    builder.Services.AddRequestTimeouts(options =>
+    {
+        options.DefaultPolicy = new Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutPolicy
+        {
+            Timeout = TimeSpan.FromSeconds(30)
+        };
+    });
+
+    builder.Services.AddRateLimiter(options =>
+    {
+        options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+        options.OnRejected = async (context, token) =>
+        {
+            context.HttpContext.Response.ContentType = "application/json";
+            await context.HttpContext.Response.WriteAsync(
+                "{\"statusCode\":429,\"error\":\"Too many requests. Please retry shortly.\"}",
+                token);
+        };
+
+        options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+        {
+            var remoteIp = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+            var path = httpContext.Request.Path;
+
+            var permitLimit = path.StartsWithSegments("/api/auth", StringComparison.OrdinalIgnoreCase) ? 8 : 120;
+            var queueLimit = path.StartsWithSegments("/api/auth", StringComparison.OrdinalIgnoreCase) ? 0 : 20;
+
+            return RateLimitPartition.GetFixedWindowLimiter(
+                partitionKey: $"{remoteIp}:{(path.StartsWithSegments("/api/auth", StringComparison.OrdinalIgnoreCase) ? "auth" : "api")}",
+                factory: _ => new FixedWindowRateLimiterOptions
+                {
+                    PermitLimit = permitLimit,
+                    Window = TimeSpan.FromMinutes(1),
+                    QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                    QueueLimit = queueLimit,
+                    AutoReplenishment = true
+                });
+        });
+    });
+
+    builder.Services.Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+        options.KnownNetworks.Clear();
+        options.KnownProxies.Clear();
+    });
+
+    builder.Services.Configure<FormOptions>(options =>
+    {
+        options.MultipartBodyLengthLimit = 262_144_000;
+        options.ValueLengthLimit = 1_048_576;
+        options.MultipartHeadersLengthLimit = 16_384;
+    });
+
+    builder.Services.AddResponseCompression(options =>
+    {
+        options.EnableForHttps = true;
+        options.Providers.Add<BrotliCompressionProvider>();
+        options.Providers.Add<GzipCompressionProvider>();
+    });
+    builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
+        options.Level = CompressionLevel.Fastest);
+    builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+        options.Level = CompressionLevel.Fastest);
+
     // ── CORS ──────────────────────────────────────────────────────────────────
     var allowedOrigins = (builder.Configuration["AllowedOrigins"] ?? "http://localhost:5173")
         .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
@@ -82,7 +160,7 @@ try
         options.AddPolicy("FrontendPolicy", policy =>
             policy.WithOrigins(allowedOrigins)
                   .AllowAnyHeader()
-                  .AllowAnyMethod()
+                  .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                   .AllowCredentials()));
 
     // ── Controllers ───────────────────────────────────────────────────────────
@@ -131,17 +209,22 @@ try
     var app = builder.Build();
 
     // ── Middleware pipeline (ORDER MATTERS) ───────────────────────────────────
+    app.UseForwardedHeaders();
     app.UseMiddleware<ExceptionMiddleware>();
     app.UseMiddleware<SecurityHeadersMiddleware>();
     app.UseSerilogRequestLogging();
+    app.UseResponseCompression();
 
-    // Swagger always on (restrict to IsDevelopment before going to production)
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
+    var enableSwaggerInProduction = builder.Configuration.GetValue<bool>("Security:EnableSwaggerInProduction");
+    if (app.Environment.IsDevelopment() || enableSwaggerInProduction)
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "LearnLead API v1");
-        c.RoutePrefix = "swagger";
-    });
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "LearnLead API v1");
+            c.RoutePrefix = "swagger";
+        });
+    }
 
     var webRoot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
     Directory.CreateDirectory(webRoot);
@@ -151,8 +234,15 @@ try
         RequestPath = ""
     });
 
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseHsts();
+        app.UseHttpsRedirection();
+    }
+
     app.UseCors("FrontendPolicy");
-    // app.UseHttpsRedirection(); // only enable with a real SSL cert
+    app.UseRateLimiter();
+    app.UseRequestTimeouts();
 
     app.UseAuthentication();
     app.UseAuthorization();
@@ -160,7 +250,7 @@ try
     app.MapHealthChecks("/health");
     app.MapControllers();
 
-    Log.Information("LearnLead API running → http://localhost:5216/swagger");
+    Log.Information("LearnLead API running and hardened middleware enabled");
     app.Run();
 }
 catch (Exception ex)
@@ -171,3 +261,5 @@ finally
 {
     Log.CloseAndFlush();
 }
+
+public partial class Program { }

@@ -29,6 +29,7 @@ public class VideoService : IVideoService
 
     public async Task<PagedResultDto<VideoDto>> GetAllAsync(int page, int pageSize, string? courseId = null)
     {
+        (page, pageSize) = PagingGuard.Normalize(page, pageSize);
         var (videos, total) = await _videoRepo.GetAllAsync(page, pageSize, courseId);
         return new PagedResultDto<VideoDto>
         {

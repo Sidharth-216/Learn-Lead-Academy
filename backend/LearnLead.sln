@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnLead.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnLead.API", "LearnLead.API\LearnLead.API.csproj", "{A7DB470E-DACC-4A50-B62A-2E7632F5697C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnLead.Tests", "LearnLead.Tests\LearnLead.Tests.csproj", "{CFC45386-08FF-4962-8DD6-FD7FC899CB4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{A7DB470E-DACC-4A50-B62A-2E7632F5697C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7DB470E-DACC-4A50-B62A-2E7632F5697C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7DB470E-DACC-4A50-B62A-2E7632F5697C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFC45386-08FF-4962-8DD6-FD7FC899CB4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC45386-08FF-4962-8DD6-FD7FC899CB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC45386-08FF-4962-8DD6-FD7FC899CB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC45386-08FF-4962-8DD6-FD7FC899CB4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

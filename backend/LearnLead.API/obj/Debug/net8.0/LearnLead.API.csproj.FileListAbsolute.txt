@@ -62,6 +62,7 @@
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/LearnLead.API.csproj.CoreCompileInputs.cache
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/LearnLead.API.MvcApplicationPartsAssemblyInfo.cs
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/LearnLead.API.MvcApplicationPartsAssemblyInfo.cache
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/LearnLead.API.sourcelink.json
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/staticwebassets.build.json
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/staticwebassets.development.json
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/staticwebassets/msbuild.LearnLead.API.Microsoft.AspNetCore.StaticWebAssets.props
@@ -76,4 +77,3 @@
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/LearnLead.API.pdb
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/LearnLead.API.genruntimeconfig.cache
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/ref/LearnLead.API.dll
-/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/LearnLead.API.sourcelink.json

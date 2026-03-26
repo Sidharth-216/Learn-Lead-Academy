@@ -2,6 +2,7 @@ using System.Security.Claims;
 using LearnLead.Application.DTOs.Resources;
 using LearnLead.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearnLead.API.Controllers;
@@ -12,6 +13,26 @@ namespace LearnLead.API.Controllers;
 [Produces("application/json")]
 public class ResourcesController : ControllerBase
 {
+    private const long MaxResourceUploadBytes = 25L * 1024 * 1024;
+    private static readonly HashSet<string> AllowedResourceExtensions =
+    [
+        ".pdf", ".doc", ".docx", ".txt", ".zip", ".ppt", ".pptx", ".xls", ".xlsx"
+    ];
+
+    private static readonly HashSet<string> AllowedResourceMimeTypes =
+    [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "text/plain",
+        "application/zip",
+        "application/x-zip-compressed",
+        "application/vnd.ms-powerpoint",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    ];
+
     private readonly ILessonResourceService _resourceService;
 
     public ResourcesController(ILessonResourceService resourceService)
@@ -39,6 +60,7 @@ public class ResourcesController : ControllerBase
 
     [HttpPost("upload")]
     [Consumes("multipart/form-data")]
+    [RequestSizeLimit(MaxResourceUploadBytes)]
     [ProducesResponseType(typeof(LessonResourceDto), 201)]
     [ProducesResponseType(400)]
     public async Task<IActionResult> Upload(
@@ -51,6 +73,9 @@ public class ResourcesController : ControllerBase
         if (file is null || file.Length == 0)
             return BadRequest(new { error = "Resource file is required." });
 
+        if (file.Length > MaxResourceUploadBytes)
+            return BadRequest(new { error = "File is too large. Max allowed size is 25 MB." });
+
         if (string.IsNullOrWhiteSpace(courseId) || string.IsNullOrWhiteSpace(lessonId))
             return BadRequest(new { error = "CourseId and LessonId are required." });
 
@@ -60,11 +85,18 @@ public class ResourcesController : ControllerBase
         if (string.IsNullOrWhiteSpace(title))
             return BadRequest(new { error = "Title is required." });
 
+        var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+        if (!AllowedResourceExtensions.Contains(ext))
+            return BadRequest(new { error = "Unsupported file type." });
+
+        var contentType = file.ContentType?.Trim().ToLowerInvariant() ?? "application/octet-stream";
+        if (!AllowedResourceMimeTypes.Contains(contentType))
+            return BadRequest(new { error = "Unsupported MIME type." });
+
         var uploadsRoot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "resources");
         Directory.CreateDirectory(uploadsRoot);
 
         var safeName = Path.GetFileName(file.FileName);
-        var ext = Path.GetExtension(safeName);
         var uniqueName = $"{Guid.NewGuid():N}{ext}";
         var filePath = Path.Combine(uploadsRoot, uniqueName);
 
@@ -74,7 +106,7 @@ public class ResourcesController : ControllerBase
         }
 
         var publicPath = $"/uploads/resources/{uniqueName}";
-        var absoluteUrl = $"{Request.Scheme}://{Request.Host}{publicPath}";
+        var absoluteUrl = BuildPublicAssetUrl(publicPath);
 
         var dto = new CreateLessonResourceDto
         {
@@ -85,7 +117,7 @@ public class ResourcesController : ControllerBase
             StoragePath = absoluteUrl,
             IsExternalLink = false,
             SizeBytes = file.Length,
-            MimeType = string.IsNullOrWhiteSpace(file.ContentType) ? "application/octet-stream" : file.ContentType
+            MimeType = contentType
         };
 
         var adminId = User.FindFirstValue(ClaimTypes.NameIdentifier)
@@ -148,5 +180,11 @@ public class ResourcesController : ControllerBase
     {
         await _resourceService.DeleteAsync(id);
         return NoContent();
+    }
+
+    private string BuildPublicAssetUrl(string relativePath)
+    {
+        var origin = $"{Request.Scheme}://{Request.Host}";
+        return new Uri(new Uri(origin), relativePath).ToString();
     }
 }

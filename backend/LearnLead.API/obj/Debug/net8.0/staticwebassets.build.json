@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5cCyVhf1XNEnQ3Jnn9BMF6MZdHqzjtD8dLPUXbeljK8=",
+  "Hash": "EXloSGiMC7elu2JdSHJ0z+EXGS9jz5BxsggWHJgRLw0=",
   "Source": "LearnLead.API",
   "BasePath": "_content/LearnLead.API",
   "Mode": "Default",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/resources/027e138a46434becaed5d3912b532e80.docx",
+      "SourceId": "LearnLead.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/",
+      "BasePath": "_content/LearnLead.API",
+      "RelativePath": "uploads/resources/027e138a46434becaed5d3912b532e80.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/resources/027e138a46434becaed5d3912b532e80.docx"
+    },
+    {
+      "Identity": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/resources/4c7a5cd06cfe4bd98da4fb614edc6939.docx",
+      "SourceId": "LearnLead.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/",
+      "BasePath": "_content/LearnLead.API",
+      "RelativePath": "uploads/resources/4c7a5cd06cfe4bd98da4fb614edc6939.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/resources/4c7a5cd06cfe4bd98da4fb614edc6939.docx"
+    },
     {
       "Identity": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/4726810950244cd182960f71d9ceaeed.mp4",
       "SourceId": "LearnLead.API",

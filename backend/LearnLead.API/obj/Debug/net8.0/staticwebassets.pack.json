@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/resources/027e138a46434becaed5d3912b532e80.docx",
+      "PackagePath": "staticwebassets/uploads/resources/027e138a46434becaed5d3912b532e80.docx"
+    },
+    {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/resources/4c7a5cd06cfe4bd98da4fb614edc6939.docx",
+      "PackagePath": "staticwebassets/uploads/resources/4c7a5cd06cfe4bd98da4fb614edc6939.docx"
+    },
+    {
       "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/4726810950244cd182960f71d9ceaeed.mp4",
       "PackagePath": "staticwebassets/uploads/videos/4726810950244cd182960f71d9ceaeed.mp4"
     },

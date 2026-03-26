@@ -3,6 +3,7 @@
 // =============================================================================
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5216/api";
+const REQUEST_TIMEOUT_MS = 15_000;
 
 // ── Token helpers ─────────────────────────────────────────────────────────────
 export const getAccessToken  = () => localStorage.getItem("ll_access_token");
@@ -33,7 +34,20 @@ async function request<T>(
   const token = getAccessToken();
   if (token) headers["Authorization"] = `Bearer ${token}`;
 
-  const res = await fetch(`${BASE_URL}${path}`, { ...options, headers });
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+  let res: Response;
+  try {
+    res = await fetch(`${BASE_URL}${path}`, { ...options, headers, signal: controller.signal });
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw new Error("Request timed out. Please try again.");
+    }
+    throw new Error("Unable to reach server. Check your connection and try again.");
+  } finally {
+    window.clearTimeout(timeout);
+  }
 
   if (res.status === 401 && retry) {
     const refreshed = await tryRefresh();
@@ -45,6 +59,12 @@ async function request<T>(
 
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
+    if (res.status === 429) {
+      throw new Error("Too many requests. Please wait a moment and retry.");
+    }
+    if (res.status >= 500) {
+      throw new Error("Server error. Please try again shortly.");
+    }
     throw new Error(body?.error ?? `Request failed: ${res.status}`);
   }
 
