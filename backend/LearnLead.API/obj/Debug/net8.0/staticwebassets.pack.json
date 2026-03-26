@@ -9,8 +9,24 @@
       "PackagePath": "staticwebassets/uploads/resources/4c7a5cd06cfe4bd98da4fb614edc6939.docx"
     },
     {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/resources/63dbc0b3acd04371bb79e42b0094edf0.docx",
+      "PackagePath": "staticwebassets/uploads/resources/63dbc0b3acd04371bb79e42b0094edf0.docx"
+    },
+    {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/2117cd01940c415d971df686116b972b.mp4",
+      "PackagePath": "staticwebassets/uploads/videos/2117cd01940c415d971df686116b972b.mp4"
+    },
+    {
       "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/4726810950244cd182960f71d9ceaeed.mp4",
       "PackagePath": "staticwebassets/uploads/videos/4726810950244cd182960f71d9ceaeed.mp4"
+    },
+    {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/4d8a262cfaba4369a740e5f1359d163a.mp4",
+      "PackagePath": "staticwebassets/uploads/videos/4d8a262cfaba4369a740e5f1359d163a.mp4"
+    },
+    {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/6e6d2ec6b39c487eb8b04b05d11c0f09.mp4",
+      "PackagePath": "staticwebassets/uploads/videos/6e6d2ec6b39c487eb8b04b05d11c0f09.mp4"
     },
     {
       "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/a06bcda68d564bcfa15a443e691321f9.mp4",
@@ -19,6 +35,14 @@
     {
       "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/b0edb2b2bc9149189641af7329d40458.mp4",
       "PackagePath": "staticwebassets/uploads/videos/b0edb2b2bc9149189641af7329d40458.mp4"
+    },
+    {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/b1c78f177bb5444297d5a903d6e0e825.mp4",
+      "PackagePath": "staticwebassets/uploads/videos/b1c78f177bb5444297d5a903d6e0e825.mp4"
+    },
+    {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/d39a5602ced740a3b9b2bf7ba93e4e49.mp4",
+      "PackagePath": "staticwebassets/uploads/videos/d39a5602ced740a3b9b2bf7ba93e4e49.mp4"
     },
     {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.LearnLead.API.Microsoft.AspNetCore.StaticWebAssets.props",

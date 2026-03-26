@@ -35,6 +35,19 @@ const getYoutubeEmbedUrl = (url?: string) => {
   }
 };
 
+const BROWSER_PLAYABLE_VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov", ".m4v", ".ogv", ".ogg"];
+
+const isBrowserPlayableDirectVideoUrl = (url?: string) => {
+  if (!url) return false;
+  try {
+    const parsed = new URL(url);
+    const extension = parsed.pathname.slice(parsed.pathname.lastIndexOf(".")).toLowerCase();
+    return BROWSER_PLAYABLE_VIDEO_EXTENSIONS.includes(extension);
+  } catch {
+    return false;
+  }
+};
+
 const CourseDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -79,6 +92,7 @@ const CourseDetail = () => {
   useEffect(() => {
     const firstPlayable = lessons.find((lesson) =>
       (lesson.isFree || enrolled) && !!lesson.videoUrl
+      && (!!getYoutubeEmbedUrl(lesson.videoUrl) || isBrowserPlayableDirectVideoUrl(lesson.videoUrl))
     );
     setActiveLessonId(firstPlayable?.id ?? null);
   }, [lessons, enrolled]);
@@ -124,7 +138,9 @@ const CourseDetail = () => {
   }
 
   const activeLesson = lessons.find((lesson) => lesson.id === activeLessonId) ?? null;
-  const canPlayActive = !!activeLesson && (activeLesson.isFree || enrolled) && !!activeLesson.videoUrl;
+  const activeLessonSupportsPlayback = !!activeLesson?.videoUrl
+    && (!!getYoutubeEmbedUrl(activeLesson.videoUrl) || isBrowserPlayableDirectVideoUrl(activeLesson.videoUrl));
+  const canPlayActive = !!activeLesson && (activeLesson.isFree || enrolled) && activeLessonSupportsPlayback;
   const youtubeEmbedUrl = getYoutubeEmbedUrl(activeLesson?.videoUrl);
   const resourceTypeLabel = (type: LessonResource["resourceType"]) => {
     if (type === "notes") return "Notes";
@@ -222,7 +238,7 @@ const CourseDetail = () => {
                 ) : (
                   <div className="text-sm text-muted-foreground py-8 text-center">
                     {enrolled
-                      ? "No playable video is linked to the selected lesson yet."
+                      ? "No browser-playable video is linked to the selected lesson yet (use MP4/WebM/MOV/M4V or YouTube)."
                       : "Enroll to unlock lesson videos (free lessons are available without enrollment)."}
                   </div>
                 )}
@@ -243,7 +259,9 @@ const CourseDetail = () => {
                 <div className="space-y-3">
                   {lessons.map((lesson) => {
                     const canView = lesson.isFree || enrolled;
-                    const canPlay = canView && !!lesson.videoUrl;
+                    const supportsPlayback = !!lesson.videoUrl
+                      && (!!getYoutubeEmbedUrl(lesson.videoUrl) || isBrowserPlayableDirectVideoUrl(lesson.videoUrl));
+                    const canPlay = canView && supportsPlayback;
                     const isActive = activeLessonId === lesson.id;
                     return (
                       <div
@@ -265,7 +283,11 @@ const CourseDetail = () => {
                             <p className="font-medium text-sm text-foreground">{lesson.title}</p>
                             <p className="text-xs text-muted-foreground">
                               {lesson.duration}
-                              {canPlay ? " · Click to play" : " · Video not linked"}
+                              {canPlay
+                                ? " · Click to play"
+                                : lesson.videoUrl
+                                  ? " · Unsupported browser format"
+                                  : " · Video not linked"}
                             </p>
                           </div>
                         </div>

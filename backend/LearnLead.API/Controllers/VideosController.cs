@@ -105,11 +105,11 @@ public class VideosController : ControllerBase
 
         var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
         if (!AllowedVideoExtensions.Contains(ext))
-            return BadRequest(new { error = "Unsupported video file type." });
+            return BadRequest(new { error = "Unsupported video file type. Use MP4, WebM, MOV, or M4V." });
 
         var contentType = file.ContentType?.Trim().ToLowerInvariant() ?? "application/octet-stream";
         if (!AllowedVideoMimeTypes.Contains(contentType))
-            return BadRequest(new { error = "Unsupported MIME type." });
+            return BadRequest(new { error = "Unsupported MIME type. Use MP4, WebM, MOV, or M4V video files." });
 
         var uploadsRoot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "videos");
         Directory.CreateDirectory(uploadsRoot);

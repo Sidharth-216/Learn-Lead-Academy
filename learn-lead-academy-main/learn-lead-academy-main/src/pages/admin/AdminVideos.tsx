@@ -11,6 +11,8 @@ import { toast } from "sonner";
 const ALL = "__all__";
 const UPLOAD_MODE_FILE = "file";
 const UPLOAD_MODE_YOUTUBE = "youtube";
+const ALLOWED_VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov", ".m4v"] as const;
+const ALLOWED_VIDEO_MIME_TYPES = ["video/mp4", "video/webm", "video/quicktime", "video/x-m4v", "video/m4v"] as const;
 
 const AdminVideos = () => {
   const [videos,         setVideos]         = useState<Video[]>([]);
@@ -90,6 +92,18 @@ const AdminVideos = () => {
     if (uploadMode === UPLOAD_MODE_FILE && !file) {
       toast.error("Please choose a video file.");
       return;
+    }
+    if (uploadMode === UPLOAD_MODE_FILE && file) {
+      const dotIndex = file.name.lastIndexOf(".");
+      const extension = dotIndex >= 0 ? file.name.slice(dotIndex).toLowerCase() : "";
+      const mimeType = file.type.toLowerCase();
+      const isAllowedExtension = ALLOWED_VIDEO_EXTENSIONS.includes(extension as (typeof ALLOWED_VIDEO_EXTENSIONS)[number]);
+      const isAllowedMimeType = !mimeType || ALLOWED_VIDEO_MIME_TYPES.includes(mimeType as (typeof ALLOWED_VIDEO_MIME_TYPES)[number]);
+
+      if (!isAllowedExtension || !isAllowedMimeType) {
+        toast.error("Unsupported format. Please upload MP4, WebM, MOV, or M4V.");
+        return;
+      }
     }
     if (uploadMode === UPLOAD_MODE_YOUTUBE && !youtubeUrl.trim()) {
       toast.error("Please enter a YouTube URL.");
@@ -229,7 +243,7 @@ const AdminVideos = () => {
                   <Input
                     ref={fileRef}
                     type="file"
-                    accept="video/*"
+                    accept={ALLOWED_VIDEO_EXTENSIONS.join(",")}
                     className="cursor-pointer"
                     disabled={uploading}
                   />
