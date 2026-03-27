@@ -125,6 +125,28 @@ try
                     AutoReplenishment = true
                 });
         });
+
+        options.AddPolicy("payment", httpContext =>
+        {
+            var userId = httpContext.User.Identity?.IsAuthenticated == true
+                ? httpContext.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
+                : null;
+
+            var key = string.IsNullOrWhiteSpace(userId)
+                ? $"payment-ip:{httpContext.Connection.RemoteIpAddress}"
+                : $"payment-user:{userId}";
+
+            return RateLimitPartition.GetFixedWindowLimiter(
+                partitionKey: key,
+                factory: _ => new FixedWindowRateLimiterOptions
+                {
+                    PermitLimit = 10,
+                    Window = TimeSpan.FromMinutes(1),
+                    QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                    QueueLimit = 2,
+                    AutoReplenishment = true
+                });
+        });
     });
 
     builder.Services.Configure<ForwardedHeadersOptions>(options =>

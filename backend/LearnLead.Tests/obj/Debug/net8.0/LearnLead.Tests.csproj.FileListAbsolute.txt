@@ -481,3 +481,4 @@
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Tests/obj/Debug/net8.0/LearnLead.Tests.pdb
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Tests/obj/Debug/net8.0/LearnLead.Tests.genruntimeconfig.cache
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Tests/obj/Debug/net8.0/ref/LearnLead.Tests.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Tests/bin/Debug/net8.0/QRCoder.dll

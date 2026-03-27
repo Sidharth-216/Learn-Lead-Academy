@@ -1,4 +1,4 @@
-import { LayoutDashboard, BookOpen, Users, Video, FolderOpen, Settings, GraduationCap, LogOut, ChevronLeft } from "lucide-react";
+import { LayoutDashboard, BookOpen, Users, Video, FolderOpen, Settings, GraduationCap, LogOut, ChevronLeft, Wallet } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import {
@@ -19,6 +19,7 @@ const menuItems = [
   { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
   { title: "Courses", url: "/admin/courses", icon: BookOpen },
   { title: "Users", url: "/admin/users", icon: Users },
+  { title: "Payments", url: "/admin/payments", icon: Wallet },
   { title: "Videos", url: "/admin/videos", icon: Video },
   { title: "Resources", url: "/admin/resources", icon: FolderOpen },
   { title: "Settings", url: "/admin/settings", icon: Settings },

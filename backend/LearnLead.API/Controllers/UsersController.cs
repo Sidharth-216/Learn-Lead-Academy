@@ -47,11 +47,12 @@ public class UsersController : ControllerBase
     [ProducesResponseType(typeof(EnrollmentDto), 201)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
-    public async Task<IActionResult> Enroll(string courseId)
+    public IActionResult Enroll(string courseId)
     {
-        var userId = GetUserId();
-        var enrollment = await _userService.EnrollAsync(userId, courseId);
-        return CreatedAtAction(nameof(GetMyEnrollments), enrollment);
+        return BadRequest(new
+        {
+            error = "Direct enrollment is disabled. Create a payment session from /api/payments/course/{courseId}/session and complete payment first."
+        });
     }
 
     /// <summary>Update the current user's progress in an enrolled course (0–100).</summary>

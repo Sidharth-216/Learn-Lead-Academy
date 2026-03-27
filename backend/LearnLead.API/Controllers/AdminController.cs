@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using LearnLead.Application.DTOs.Courses;
 using LearnLead.Application.DTOs.Lessons;
+using LearnLead.Application.DTOs.Payments;
 using LearnLead.Application.DTOs.Users;
 using LearnLead.Application.Interfaces;
 using LearnLead.Application.Validators;
@@ -21,19 +22,22 @@ public class AdminController : ControllerBase
     private readonly ICourseService    _courseService;
     private readonly ISettingsService  _settingsService;
     private readonly ILessonService    _lessonService;
+    private readonly IPaymentService   _paymentService;
 
     public AdminController(
         IDashboardService dashboardService,
         IUserService      userService,
         ICourseService    courseService,
         ISettingsService  settingsService,
-        ILessonService    lessonService)
+        ILessonService    lessonService,
+        IPaymentService   paymentService)
     {
         _dashboardService = dashboardService;
         _userService      = userService;
         _courseService    = courseService;
         _settingsService  = settingsService;
         _lessonService    = lessonService;
+        _paymentService   = paymentService;
     }
 
     // ── Dashboard ─────────────────────────────────────────────────────────────
@@ -140,6 +144,28 @@ public class AdminController : ControllerBase
     {
         await _lessonService.DeleteAsync(id);
         return NoContent();
+    }
+
+    // ── Payments ──────────────────────────────────────────────────────────────
+
+    [HttpGet("payments")]
+    [ProducesResponseType(200)]
+    public async Task<IActionResult> GetPayments(
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 20,
+        [FromQuery] string? status = null,
+        [FromQuery] string? search = null)
+        => Ok(await _paymentService.GetAdminPaymentsAsync(page, pageSize, status, search));
+
+    [HttpPost("payments/{paymentId}/review")]
+    [ProducesResponseType(typeof(PaymentSessionDto), 200)]
+    public async Task<IActionResult> ReviewPayment(string paymentId, [FromBody] AdminReviewPaymentRequest request)
+    {
+        var adminId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            ?? throw new InvalidOperationException("Admin ID not found in token claims.");
+
+        var payment = await _paymentService.ReviewPaymentAsync(adminId, paymentId, request);
+        return Ok(payment);
     }
 
     // ── Settings ──────────────────────────────────────────────────────────────

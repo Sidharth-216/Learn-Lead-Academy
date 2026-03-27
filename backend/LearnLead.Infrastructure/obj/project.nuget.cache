@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j9oYdXG4Ejg=",
+  "dgSpecHash": "87xVO3K3TpM=",
   "success": true,
   "projectFilePath": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.Infrastructure/LearnLead.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -35,6 +35,7 @@
     "/home/sidhu/.nuget/packages/mongodb.driver/2.30.0/mongodb.driver.2.30.0.nupkg.sha512",
     "/home/sidhu/.nuget/packages/mongodb.driver.core/2.30.0/mongodb.driver.core.2.30.0.nupkg.sha512",
     "/home/sidhu/.nuget/packages/mongodb.libmongocrypt/1.12.0/mongodb.libmongocrypt.1.12.0.nupkg.sha512",
+    "/home/sidhu/.nuget/packages/qrcoder/1.6.0/qrcoder.1.6.0.nupkg.sha512",
     "/home/sidhu/.nuget/packages/sharpcompress/0.30.1/sharpcompress.0.30.1.nupkg.sha512",
     "/home/sidhu/.nuget/packages/snappier/1.0.0/snappier.1.0.0.nupkg.sha512",
     "/home/sidhu/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",

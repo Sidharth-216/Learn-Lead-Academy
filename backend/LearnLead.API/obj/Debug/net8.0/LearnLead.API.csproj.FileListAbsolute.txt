@@ -77,3 +77,4 @@
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/LearnLead.API.pdb
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/LearnLead.API.genruntimeconfig.cache
 /home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/obj/Debug/net8.0/ref/LearnLead.API.dll
+/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/bin/Debug/net8.0/QRCoder.dll

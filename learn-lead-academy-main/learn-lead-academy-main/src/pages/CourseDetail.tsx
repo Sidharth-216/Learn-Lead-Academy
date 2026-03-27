@@ -105,12 +105,11 @@ const CourseDetail = () => {
     if (!id) return;
     setEnrolling(true);
     try {
-      await userApi.enroll(id);
-      setEnrolled(true);
-      toast.success("Successfully enrolled! Head to your dashboard to start learning.");
-      navigate("/dashboard");
+      const payment = await userApi.createPaymentSession(id, "QrUpi");
+      toast.success("Payment session created. Complete payment to unlock this course.");
+      navigate(`/payments/${payment.id}`);
     } catch (err: any) {
-      toast.error(err.message ?? "Enrollment failed. Please try again.");
+      toast.error(err.message ?? "Could not create payment session. Please try again.");
     } finally {
       setEnrolling(false);
     }
@@ -410,7 +409,7 @@ const CourseDetail = () => {
                     className="w-full bg-gold-gradient text-accent-foreground font-display font-bold rounded-xl py-6 text-lg shadow-gold"
                   >
                     {enrolling
-                      ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Enrolling...</>
+                      ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Redirecting to Payment...</>
                       : authApi.isLoggedIn() ? "Enroll Now" : "Sign up to Enroll"}
                   </Button>
                 )}

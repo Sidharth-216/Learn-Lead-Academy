@@ -106,6 +106,25 @@
           }
         }
       },
+      "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
       "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.2": {
         "type": "package",
         "compile": {
@@ -152,23 +171,20 @@
           }
         }
       },
-      "Microsoft.Extensions.Primitives/6.0.0": {
+      "Microsoft.Extensions.Primitives/8.0.0": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
-        },
         "compile": {
-          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/netcoreapp3.1/_._": {}
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "Microsoft.NETCore.Platforms/5.0.0": {
@@ -300,6 +316,15 @@
           }
         }
       },
+      "QRCoder/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/QRCoder.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/QRCoder.dll": {}
+        }
+      },
       "SharpCompress/0.30.1": {
         "type": "package",
         "compile": {
@@ -340,20 +365,17 @@
           "lib/netcoreapp2.1/_._": {}
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "System.Runtime.CompilerServices.Unsafe/5.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+          "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {
             "related": ".xml"
           }
-        },
-        "build": {
-          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "System.Security.AccessControl/5.0.0": {
@@ -591,6 +613,36 @@
         "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.xml"
       ]
     },
+    "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
+      "sha512": "3lE/iLSutpgX1CC0NOW70FJoGARRHbyKmG7dc0klnUZ9Dd9hS6N/POPWhKhMLCEuNN5nXEY5agmlFtH562vqhQ==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.abstractions/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Configuration.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Configuration.Abstractions.targets",
+        "lib/net462/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.2": {
       "sha512": "3iE7UF7MQkCv1cxzCahz+Y/guQbTqieyxyaWKhrRO91itI9cOKO76OHeQDahqG4MmW5umr3CcCvGmK92lWNlbg==",
       "type": "package",
@@ -657,27 +709,32 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Primitives/6.0.0": {
-      "sha512": "9+PnzmQFfEFNR9J2aDTfJGGupShHjOuGw4VUv+JB044biSHrnmCIMD+mJHmb2H7YryrfBEXDurxQ47gJZdCKNQ==",
+    "Microsoft.Extensions.Primitives/8.0.0": {
+      "sha512": "bXJEZrW9ny8vjMF1JV253WeLhpEVzFo1lyaZu1vQ4ZxWUlVvknZ/+ftFgVheLubb4eZPSwwxBeqS1JkCOjxd8g==",
       "type": "package",
-      "path": "microsoft.extensions.primitives/6.0.0",
+      "path": "microsoft.extensions.primitives/8.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
+        "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Primitives.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Primitives.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/Microsoft.Extensions.Primitives.dll",
-        "lib/net461/Microsoft.Extensions.Primitives.xml",
+        "lib/net462/Microsoft.Extensions.Primitives.dll",
+        "lib/net462/Microsoft.Extensions.Primitives.xml",
         "lib/net6.0/Microsoft.Extensions.Primitives.dll",
         "lib/net6.0/Microsoft.Extensions.Primitives.xml",
-        "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
-        "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.xml",
+        "lib/net7.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net7.0/Microsoft.Extensions.Primitives.xml",
+        "lib/net8.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net8.0/Microsoft.Extensions.Primitives.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
-        "microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+        "microsoft.extensions.primitives.8.0.0.nupkg.sha512",
         "microsoft.extensions.primitives.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -836,6 +893,27 @@
         "runtimes/win/native/mongocrypt.dll"
       ]
     },
+    "QRCoder/1.6.0": {
+      "sha512": "XmPA81eo+oRxBuyVdswsSkTGTE1d3thfF11Z1PdD7oB56A6HU4G4AAOdySmGRMb/cljwlFTMWUtosGEnwpS6GA==",
+      "type": "package",
+      "path": "qrcoder/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/QRCoder.dll",
+        "lib/net40/QRCoder.dll",
+        "lib/net5.0-windows7.0/QRCoder.dll",
+        "lib/net5.0/QRCoder.dll",
+        "lib/net6.0-windows7.0/QRCoder.dll",
+        "lib/net6.0/QRCoder.dll",
+        "lib/netstandard1.3/QRCoder.dll",
+        "lib/netstandard2.0/QRCoder.dll",
+        "nuget-icon.png",
+        "nuget-readme.md",
+        "qrcoder.1.6.0.nupkg.sha512",
+        "qrcoder.nuspec"
+      ]
+    },
     "SharpCompress/0.30.1": {
       "sha512": "XqD4TpfyYGa7QTPzaGlMVbcecKnXy4YmYLDWrU+JIj7IuRNl7DH2END+Ll7ekWIY8o3dAMWLFDE1xdhfIWD1nw==",
       "type": "package",
@@ -926,29 +1004,36 @@
         "version.txt"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
-      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+    "System.Runtime.CompilerServices.Unsafe/5.0.0": {
+      "sha512": "ZD9TMpsmYJLrxbbmdvhwt9YEgG5WntEnZ/d1eH8JBX9LBp+Ju8BSBhUGbZMNVHHomWo2KVImJhTDl2hIgw/6MA==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "path": "system.runtime.compilerservices.unsafe/5.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/net45/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net45/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
-        "useSharedDesignerContext.txt"
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Security.AccessControl/5.0.0": {
@@ -1084,7 +1169,9 @@
       "FluentValidation >= 11.11.0",
       "FluentValidation.DependencyInjectionExtensions >= 11.11.0",
       "LearnLead.Domain >= 1.0.0",
-      "Microsoft.Extensions.DependencyInjection.Abstractions >= 8.0.2"
+      "Microsoft.Extensions.Configuration.Abstractions >= 8.0.0",
+      "Microsoft.Extensions.DependencyInjection.Abstractions >= 8.0.2",
+      "QRCoder >= 1.6.0"
     ]
   },
   "packageFolders": {
@@ -1149,9 +1236,17 @@
             "target": "Package",
             "version": "[11.11.0, )"
           },
+          "Microsoft.Extensions.Configuration.Abstractions": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          },
           "Microsoft.Extensions.DependencyInjection.Abstractions": {
             "target": "Package",
             "version": "[8.0.2, )"
+          },
+          "QRCoder": {
+            "target": "Package",
+            "version": "[1.6.0, )"
           }
         },
         "imports": [

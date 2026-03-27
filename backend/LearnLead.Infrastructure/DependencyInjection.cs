@@ -63,6 +63,7 @@ public static class DependencyInjection
         services.AddScoped<ICourseRepository,     CourseRepository>();
         services.AddScoped<IVideoRepository,      VideoRepository>();
         services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
+        services.AddScoped<IPaymentRepository,    PaymentRepository>();
         services.AddScoped<ISettingsRepository,   SettingsRepository>();
         services.AddScoped<ILessonRepository,     LessonRepository>();  // NEW
         services.AddScoped<ILessonResourceRepository, LessonResourceRepository>();

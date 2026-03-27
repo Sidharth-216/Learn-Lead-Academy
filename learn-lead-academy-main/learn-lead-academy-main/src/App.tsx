@@ -8,6 +8,7 @@ import Courses      from "./pages/Courses.tsx";
 import CourseDetail from "./pages/CourseDetail.tsx";
 import Login        from "./pages/Login.tsx";
 import Dashboard    from "./pages/Dashboard.tsx";
+import Payment      from "./pages/Payment.tsx";
 import NotFound     from "./pages/NotFound.tsx";
 import AdminLayout  from "./layouts/AdminLayout.tsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
@@ -18,6 +19,7 @@ import AdminResources from "./pages/admin/AdminResources.tsx";
 import AdminSettings  from "./pages/admin/AdminSettings.tsx";
 import AdminLogin     from "./pages/admin/AdminLogin.tsx";
 import AdminLessons   from "./pages/admin/AdminLessons.tsx";
+import AdminPayments  from "./pages/admin/AdminPayments.tsx";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +36,7 @@ const App = () => (
           <Route path="/courses/:id"    element={<CourseDetail />} />
           <Route path="/login"          element={<Login />} />
           <Route path="/dashboard"      element={<Dashboard />} />
+          <Route path="/payments/:id"   element={<Payment />} />
 
           {/* Admin login — outside layout (no sidebar) */}
           <Route path="/admin/login"    element={<AdminLogin />} />
@@ -44,6 +47,7 @@ const App = () => (
             <Route path="courses"                     element={<AdminCourses />} />
             <Route path="courses/:courseId/lessons"   element={<AdminLessons />} />
             <Route path="users"                       element={<AdminUsers />} />
+            <Route path="payments"                    element={<AdminPayments />} />
             <Route path="videos"                      element={<AdminVideos />} />
             <Route path="resources"                   element={<AdminResources />} />
             <Route path="settings"                    element={<AdminSettings />} />

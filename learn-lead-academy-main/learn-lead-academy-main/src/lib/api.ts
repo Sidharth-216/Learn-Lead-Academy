@@ -141,6 +141,26 @@ export interface Enrollment {
   completedAt?: string;
 }
 
+export interface PaymentSession {
+  id: string;
+  courseId: string;
+  courseTitle: string;
+  amount: number;
+  currency: string;
+  referenceCode: string;
+  status: "Pending" | "UnderReview" | "Paid" | "Rejected" | "Expired";
+  channel: "QrUpi" | "OnlineBanking" | "ManualBankTransfer";
+  qrPayload?: string;
+  qrImageBase64?: string;
+  gatewayCheckoutUrl?: string;
+  expiresAt: string;
+  createdAt: string;
+  submittedReference?: string;
+  adminNote?: string;
+  paidAt?: string;
+  confirmedAt?: string;
+}
+
 export interface AdminUser {
   id: string;
   name: string;
@@ -286,6 +306,26 @@ export const userApi = {
   enroll: (courseId: string) =>
     request<Enrollment>(`/users/me/enroll/${courseId}`, { method: "POST" }),
 
+  createPaymentSession: (courseId: string, preferredChannel?: "QrUpi" | "OnlineBanking" | "ManualBankTransfer") =>
+    request<PaymentSession>(`/payments/course/${courseId}/session`, {
+      method: "POST",
+      body: JSON.stringify({ preferredChannel }),
+    }),
+
+  getPaymentById: (paymentId: string) =>
+    request<PaymentSession>(`/payments/${paymentId}`),
+
+  getMyPayments: () =>
+    request<PaymentSession[]>("/payments/me"),
+
+  submitPayment: (paymentId: string, body: {
+    channel: "QrUpi" | "OnlineBanking" | "ManualBankTransfer";
+    transactionReference: string;
+  }) => request<PaymentSession>(`/payments/${paymentId}/submit`, {
+    method: "POST",
+    body: JSON.stringify(body),
+  }),
+
   updateProgress: (courseId: string, progressPercent: number) =>
     request<Enrollment>(`/users/me/progress/${courseId}`, {
       method: "PATCH",
@@ -405,6 +445,21 @@ export const adminApi = {
 
   updateSettings: (body: AcademySettings) =>
     request<AcademySettings>("/admin/settings", { method: "PUT", body: JSON.stringify(body) }),
+
+  getPayments: (params?: { page?: number; pageSize?: number; status?: string; search?: string }) => {
+    const qs = new URLSearchParams();
+    if (params?.page) qs.set("page", String(params.page));
+    if (params?.pageSize) qs.set("pageSize", String(params.pageSize));
+    if (params?.status) qs.set("status", params.status);
+    if (params?.search) qs.set("search", params.search);
+    return request<PagedResult<PaymentSession>>(`/admin/payments?${qs}`);
+  },
+
+  reviewPayment: (paymentId: string, body: { approve: boolean; note?: string }) =>
+    request<PaymentSession>(`/admin/payments/${paymentId}/review`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
 };
 
 // ── Admin Lesson API ─────────────────────────────────────────────────────────────────
