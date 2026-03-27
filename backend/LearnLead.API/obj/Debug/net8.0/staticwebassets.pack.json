@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets/uploads/resources/63dbc0b3acd04371bb79e42b0094edf0.docx"
     },
     {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/resources/999897e2e5004f61aaacc161ea20d5d0.docx",
+      "PackagePath": "staticwebassets/uploads/resources/999897e2e5004f61aaacc161ea20d5d0.docx"
+    },
+    {
+      "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/1a61c1c872a74e2a986e6d11d5c27c2b.mp4",
+      "PackagePath": "staticwebassets/uploads/videos/1a61c1c872a74e2a986e6d11d5c27c2b.mp4"
+    },
+    {
       "Id": "/home/sidhu/Desktop/learn-lead-academy-main/backend/LearnLead.API/wwwroot/uploads/videos/2117cd01940c415d971df686116b972b.mp4",
       "PackagePath": "staticwebassets/uploads/videos/2117cd01940c415d971df686116b972b.mp4"
     },

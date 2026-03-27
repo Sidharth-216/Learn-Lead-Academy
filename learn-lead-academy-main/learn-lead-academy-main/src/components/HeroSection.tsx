@@ -78,8 +78,7 @@ const HeroSection = () => {
             <Link to="/courses">
               <Button
                 size="lg"
-                variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground font-display font-semibold text-lg px-8 py-6 rounded-full hover:bg-primary-foreground/10 transition-all"
+                className="bg-gold-gradient text-accent-foreground font-display font-bold text-lg px-8 py-6 rounded-full shadow-gold hover:scale-105 transition-transform"
               >
                 Explore Courses
               </Button>
